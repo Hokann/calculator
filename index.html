@@ -1,8 +1,4 @@
-!<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -15,41 +11,43 @@
     <body>
         <script src="scripts.js" defer></script>
         <div class="container">
-            <div class="display-container"></div>
-            <div class="element-container">
+            <div class="subcontainer display-container">
+                <div class="result">0</div>
+            </div>
+            <div class="subcontainer element-container">
                 
-                <div class="row1">
-                    <div class="element ac"></div>
-                    <div class="element sign"></div>
-                    <div class="element percent"></div>
-                    <div class="element divide"></div>
+                <div class="row">
+                    <button class="special ac">AC</button>
+                    <button class="special C">C</button>
+                    <button class="operator modulo">%</button>
+                    <button class="operator divide">/</button>
                 </div>
 
-                <div class="row2">
-                    <div class="element seven"></div>
-                    <div class="element eight"></div>
-                    <div class="element nine"></div>
-                    <div class="element multiply"></div>
+                <div class="row">
+                    <button class="num">7</button>
+                    <button class="num">8</button>
+                    <button class="num">9</button>
+                    <button class="operator multiply">x</button>
                 </div>  
 
-                <div class="row3">
-                    <div class="element four"></div>
-                    <div class="element five"></div>
-                    <div class="element six"></div>
-                    <div class="element subtract"></div>
+                <div class="row">
+                    <button class="num">4</button>
+                    <button class="num">5</button>
+                    <button class="num">6</button>
+                    <button class="operator sub">-</button>
                 </div>
 
-                <div class="row4">
-                    <div class="element one"></div>
-                    <div class="element two"></div>
-                    <div class="element three"></div>
-                    <div class="element add"></div>
+                <div class="row">
+                    <button class="num">1</button>
+                    <button class="num">2</button>
+                    <button class="num">3</button>
+                    <button class="operator add">+</button>
                 </div>
 
-                <div class="row5">
-                    <div class="element zero"></div>
-                    <div class="element dot"></div>
-                    <div class="element eqal"></div>
+                <div class="row">
+                    <button class="num">0</button>
+                    <button class="num dot">.</button>
+                    <button class="special equal">=</button>
                 </div>
 
             </div>

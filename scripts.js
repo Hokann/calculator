@@ -7,6 +7,8 @@ function displayResult(text){
     }
     if (expression.length >= 1 && digits.length <= 1) result.innerHTML = text;
     if (text === 'CLEAR') result.innerText = '0'
+
+    if (result.innerText.length > 12) result.innerText = result.innerText.slice(0,12);
     return result.innerText;
 }
 
@@ -14,17 +16,21 @@ function evaluate2(arr){
     let operator = arr[1];
     switch(operator){
         case '+':
-            arr.splice(0,3,Number(arr[0])+Number(arr[2])) //is its own array (and modifies original arr)
+            arr.splice(0,3,(Number(arr[0])+Number(arr[2]))) //is its own array (and modifies original arr)
             return arr; //returns modified array
         case '-':
-            arr.splice(0,3,arr[0]-arr[2]);
+            arr.splice(0,3,((arr[0]-arr[2])));
             return arr;
         case 'x':
-            arr.splice(0,3,arr[0]*arr[2]);
+            arr.splice(0,3,(arr[0]*arr[2]));
             return arr;
         case '/':
-            arr.splice(0,3,arr[0]/arr[2]);
+            arr.splice(0,3,(arr[0]/arr[2]));
             return arr;
+        case '%':
+            arr.splice(0,3,(Number(arr[0]) % Number(arr[2])));
+            return arr;
+
     }
 }
 
@@ -35,11 +41,9 @@ let num = '';
 
 specialBtns.forEach((specialBtn) => {
     specialBtn.addEventListener('click', () => {
-        console.log(specialBtn);
 
         if(specialBtn.className.includes('ac')){
-            expression = [];
-            digits = [];
+            expression = []; digits = []; num = '';
             displayResult('CLEAR');
         }
 
@@ -75,71 +79,13 @@ const digitBtns = Array.from(document.querySelectorAll('.num'));
 let i=0;
 digitBtns.forEach((digitBtn) => {
     digitBtn.addEventListener('click', () => {
-        digits[i] = digitBtn.innerText;
-        displayResult(digits[i]);
-        i += 1
+        if (!(digitBtn.innerText === '.' && digits.includes('.'))){
+            digits[i] = digitBtn.innerText;
+            displayResult(digits[i]);
+            i += 1;
+        }
         num = digits.join('');
         console.log(digits)
         console.log(num)
     });
 });
-
-
-
-
-
-
-
-
-
-
-function evaluate(string){
-    const operators = ['+', '-', '/', 'x']
-    
-    let strArr = string.split('');
-    let strExp = '';
-
-    strArr.forEach((char) => {
-        if (operators.includes(char)){
-            strExp += ' '+char+' '
-        }else{
-            strExp += char;
-        }
-    });
-    let arrExp = strExp.split(' ');
-    
-    return recursion(arrExp);
-
-}
-
-
-function recursion(arrExp){
-
-    arrExp.forEach((element) => {
-        switch(element){
-            case 'x':
-                opIndex = arrExp.indexOf('x');
-                subResult = arrExp[opIndex-1]*arrExp[opIndex+1];
-                arrExp.splice(opIndex-1, 3, subResult);
-                return recursion(arrExp);
-            case '/':
-                opIndex = arrExp.indexOf('/');
-                subResult = arrExp[opIndex-1]/arrExp[opIndex+1];
-                arrExp.splice(opIndex-1, 3, subResult);
-                return recursion(arrExp);
-            case '+':
-                opIndex = arrExp.indexOf('+');
-                subResult = Number(arrExp[opIndex-1])+Number(arrExp[opIndex+1]);
-                arrExp.splice(opIndex-1, 3, subResult);
-                return recursion(arrExp);
-            case '-':
-                opIndex = arrExp.indexOf('-');
-                subResult = arrExp[opIndex-1]-arrExp[opIndex+1];
-                arrExp.splice(opIndex-1, 3, subResult);
-                return recursion(arrExp);
-        }
-        
-    })
-
-    if (arrExp.length === 1) return arrExp.join('');
-}
